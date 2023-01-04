@@ -25,3 +25,12 @@ func TestInit(t *testing.T) {
 		}
 	}
 }
+
+func TestDisjointSet_Add(t *testing.T) {
+	t.Parallel()
+	ds := New(0)
+	ds.Get(-1)
+	ds.Get(3)
+	ds.Add()
+	ds.Get(0)
+}

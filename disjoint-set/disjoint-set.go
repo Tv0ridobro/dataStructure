@@ -33,6 +33,9 @@ func (d *DisjointSet) Add() {
 
 // Get returns root element of set containing given element.
 func (d *DisjointSet) Get(x int) int {
+	if x < 0 || x >= len(d.parents) {
+		return -1
+	}
 	if d.parents[x] != x {
 		d.parents[x] = d.Get(d.parents[x])
 	}
@@ -41,6 +44,9 @@ func (d *DisjointSet) Get(x int) int {
 
 // Size returns size of set containing given element.
 func (d *DisjointSet) Size(x int) int {
+	if x < 0 || x >= len(d.parents) {
+		return 0
+	}
 	return d.sizes[d.Get(x)]
 }
 
