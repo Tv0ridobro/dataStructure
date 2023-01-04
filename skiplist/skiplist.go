@@ -5,9 +5,10 @@ package skiplist
 import (
 	"math/rand"
 
+	"golang.org/x/exp/constraints"
+
 	"github.com/Tv0ridobro/data-structure/math"
 	"github.com/Tv0ridobro/data-structure/stack"
-	"golang.org/x/exp/constraints"
 )
 
 // SkipList represents a skiplist.
@@ -131,4 +132,22 @@ Loop:
 // Contains returns true if skiplist contains given value, false otherwise.
 func (s *SkipList[T]) Contains(value T) bool {
 	return s.Find(value).value == value
+}
+
+// All returns all elements from the skiplist.
+func (s *SkipList[T]) All() []T {
+	it := s.head
+	if it == nil {
+		return []T{}
+	}
+	for it.HasBelow() {
+		it = it.Below()
+	}
+	a := make([]T, 0)
+	it = it.Next()
+	for it != nil {
+		a = append(a, it.Value())
+		it = it.Next()
+	}
+	return a
 }
