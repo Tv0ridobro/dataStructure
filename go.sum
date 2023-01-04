@@ -1,2 +1,4 @@
+github.com/dolthub/maphash v0.0.0-20221220182448-74e1e1ea1577 h1:SegEguMxToBn045KRHLIUlF2/jR7Y2qD6fF+3tdOfvI=
+github.com/dolthub/maphash v0.0.0-20221220182448-74e1e1ea1577/go.mod h1:gkg4Ch4CdCDu5h6PMriVLawB7koZ+5ijb9puGMV50a4=
 golang.org/x/exp v0.0.0-20220218215828-6cf2b201936e h1:iWVPgObh6F4UDtjBLK51zsy5UHTPLQwCmsNjCsbKhQ0=
 golang.org/x/exp v0.0.0-20220218215828-6cf2b201936e/go.mod h1:lgLbSvA5ygNOMpwM/9anMpWVlVJ7Z+cHWq/eFuinpGE=
