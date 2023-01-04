@@ -3,8 +3,9 @@
 package splaytree
 
 import (
-	"github.com/Tv0ridobro/data-structure/math"
 	"golang.org/x/exp/constraints"
+
+	"github.com/Tv0ridobro/data-structure/math"
 )
 
 // SplayTree represents a splay tree.
@@ -87,7 +88,7 @@ func (s *SplayTree[T]) Remove(value T) bool {
 
 // Kth returns kth greatest element.
 func (s *SplayTree[T]) Kth(i int) T {
-	if i > s.Size() {
+	if i > s.Size() || i < 0 {
 		var empty T
 		return empty
 	}
@@ -97,6 +98,12 @@ func (s *SplayTree[T]) Kth(i int) T {
 
 // Sub returns elements [l, r) in ascending order.
 func (s *SplayTree[T]) Sub(l, r int) []T {
+	if l >= r || l < 0 {
+		return nil
+	}
+	if r > s.Size() {
+		r = s.Size()
+	}
 	sl := make([]T, r-l)
 	n := s.root.kth(l)
 	sl[0] = n.value
@@ -107,9 +114,9 @@ func (s *SplayTree[T]) Sub(l, r int) []T {
 	return sl
 }
 
-// GetAll returns all elements from tree.
+// All returns all elements from tree.
 // Returned slice is sorted.
-func (s *SplayTree[T]) GetAll() []T {
+func (s *SplayTree[T]) All() []T {
 	if s.root == nil {
 		return nil
 	}
