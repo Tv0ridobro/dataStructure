@@ -6,8 +6,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/Tv0ridobro/data-structure/math"
 	"golang.org/x/exp/constraints"
+
+	"github.com/Tv0ridobro/data-structure/math"
 )
 
 // Treap represents a treap.
@@ -20,7 +21,7 @@ type Treap[T any] struct {
 
 // New returns an initialized treap.
 // rand.Rand is used with time.Now().UnixNano().
-// For custom rand.Rand use NewWithSource.
+// For custom rand.Rand use Treap.SetSource.
 func New[T constraints.Ordered]() *Treap[T] {
 	return &Treap[T]{
 		rand: rand.New(rand.NewSource(time.Now().UnixNano())),
