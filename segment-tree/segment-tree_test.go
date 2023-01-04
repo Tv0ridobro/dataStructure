@@ -90,3 +90,28 @@ func TestMatrixMul(t *testing.T) {
 		t.Errorf("val != neutral")
 	}
 }
+
+func TestSegmentTree_Modify(t *testing.T) {
+	t.Parallel()
+	tree := New[int]([]int{8, 0, 10, 500}, mathx.Max, math.MinInt)
+	if val := tree.Query(0, 3); val != 500 {
+		t.Errorf("val != neutral %d", val)
+	}
+	tree.Modify(3, -1)
+	if val := tree.Query(3, 3); val != -1 {
+		t.Errorf("val != neutral %d", val)
+	}
+	if val := tree.Query(2, 3); val != 10 {
+		t.Errorf("val != neutral %d", val)
+	}
+	if val := tree.Query(0, 1); val != 8 {
+		t.Errorf("val != neutral %d", val)
+	}
+	tree.Modify(0, -2)
+	if val := tree.Query(0, 0); val != -2 {
+		t.Errorf("val != neutral %d", val)
+	}
+	if val := tree.Query(0, 1); val != 0 {
+		t.Errorf("val != neutral %d", val)
+	}
+}
