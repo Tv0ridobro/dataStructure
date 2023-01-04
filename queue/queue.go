@@ -39,3 +39,8 @@ func (q *Queue[T]) Front() T {
 func (q *Queue[T]) Size() int {
 	return q.list.Len()
 }
+
+// All returns all elements from the queue.
+func (q *Queue[T]) All() []T {
+	return q.list.All()
+}

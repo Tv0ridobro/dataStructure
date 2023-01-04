@@ -1,6 +1,10 @@
 package queue
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/Tv0ridobro/data-structure/slices"
+)
 
 func TestQueue_Front(t *testing.T) {
 	t.Parallel()
@@ -95,5 +99,29 @@ func TestQueue_Size(t *testing.T) {
 	q.Enqueue(1)
 	if v := q.Size(); v != 3 {
 		t.Errorf("wrong size %d != %d", v, 3)
+	}
+}
+
+func TestQueue_All(t *testing.T) {
+	t.Parallel()
+	q := New[int]()
+	q.Enqueue(0)
+	q.Enqueue(1)
+	q.Enqueue(2)
+	q.Enqueue(3)
+	if !slices.Equal(q.All(), []int{0, 1, 2, 3}) {
+		t.Errorf("wrong all %v", []int{0, 1, 2, 3})
+	}
+	q.Dequeue()
+	if !slices.Equal(q.All(), []int{1, 2, 3}) {
+		t.Errorf("wrong all %v", []int{1, 2, 3})
+	}
+	q.Enqueue(4)
+	if !slices.Equal(q.All(), []int{1, 2, 3, 4}) {
+		t.Errorf("wrong all %v", []int{1, 2, 3, 4})
+	}
+	q.Dequeue()
+	if !slices.Equal(q.All(), []int{2, 3, 4}) {
+		t.Errorf("wrong all %v", []int{2, 3, 4})
 	}
 }
