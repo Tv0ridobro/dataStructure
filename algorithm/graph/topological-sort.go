@@ -21,7 +21,7 @@ func TopologicalSort[T any](g *graph.Graph[T]) []int {
 			dfsTopSort(i, visited, g, l)
 		}
 	}
-	return l.GetAll()
+	return l.All()
 }
 
 // dfsTopSort helper function to find topological sort using dfs.

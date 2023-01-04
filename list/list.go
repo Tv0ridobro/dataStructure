@@ -63,8 +63,8 @@ func (l *List[T]) Len() int {
 	return l.len
 }
 
-// GetAll returns all elements from the list.
-func (l *List[T]) GetAll() []T {
+// All returns all elements from the list.
+func (l *List[T]) All() []T {
 	data := make([]T, 0, l.len)
 	it := l.head
 	for it != nil {

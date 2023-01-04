@@ -104,7 +104,7 @@ func TestList_Reverse(t *testing.T) {
 		list.PushBack(values[len(values)-i-1])
 	}
 	list.Reverse()
-	if v := list.GetAll(); !slices.Equal(v, values) {
+	if v := list.All(); !slices.Equal(v, values) {
 		t.Errorf("Wrong value got %v expected %v", v, values)
 	}
 }
@@ -195,8 +195,8 @@ func TestList_GetAllAndPeek(t *testing.T) {
 			t.Errorf("data[i] != list.Peek(i) %d %d", data[i], v)
 		}
 	}
-	if !slices.Equal(data, list.GetAll()) {
-		t.Error(data, " != ", list.GetAll())
+	if !slices.Equal(data, list.All()) {
+		t.Error(data, " != ", list.All())
 	}
 }
 
@@ -237,11 +237,11 @@ func TestList_Cut(t *testing.T) {
 	if v := r.Len(); v != 14 {
 		t.Errorf("l len %d != %d", v, 14)
 	}
-	if v := l.GetAll(); !slices.Equal(v, []int{0, 1, 2, 3, 4, 5}) {
-		t.Errorf("l GetAll is wrong %v", v)
+	if v := l.All(); !slices.Equal(v, []int{0, 1, 2, 3, 4, 5}) {
+		t.Errorf("l All is wrong %v", v)
 	}
-	if v := r.GetAll(); !slices.Equal(v, []int{6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}) {
-		t.Errorf("l GetAll is wrong %v", v)
+	if v := r.All(); !slices.Equal(v, []int{6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}) {
+		t.Errorf("l All is wrong %v", v)
 	}
 }
 
@@ -250,10 +250,10 @@ func TestList_Cut2(t *testing.T) {
 	list := New[int]()
 	list.PushBack(1)
 	l, r := list.Cut(0)
-	if v := l.GetAll(); !slices.Equal(v, []int{1}) {
+	if v := l.All(); !slices.Equal(v, []int{1}) {
 		t.Errorf("Wrong value got %v expected %v", v, []int{1})
 	}
-	if v := r.GetAll(); !slices.Equal(v, []int{}) {
+	if v := r.All(); !slices.Equal(v, []int{}) {
 		t.Errorf("Wrong value got %v expected %v", v, []int{})
 	}
 }
@@ -263,11 +263,11 @@ func TestList_Cut3(t *testing.T) {
 	list := New[int]()
 	list.PushBack(1)
 	l, r := list.Cut(1)
-	if v := l.GetAll(); !slices.Equal(v, []int{1}) {
-		t.Errorf("Wrong value got %d expected %d", v, []int{1})
+	if v := l.All(); !slices.Equal(v, []int{1}) {
+		t.Errorf("Wrong value got %v expected %v", v, []int{1})
 	}
-	if v := r.GetAll(); !slices.Equal(v, []int{}) {
-		t.Errorf("Wrong value got %d expected %d", v, []int{})
+	if v := r.All(); !slices.Equal(v, []int{}) {
+		t.Errorf("Wrong value got %v expected %v", v, []int{})
 	}
 }
 
@@ -296,8 +296,8 @@ func TestList_Merge(t *testing.T) {
 		if v := list1.Len(); v != len(test.values1)+len(test.values2) {
 			t.Errorf("Wrong value got %d expected %d", v, len(test.values1)+len(test.values2))
 		}
-		if v := list1.GetAll(); slices.Equal(v, append(test.values1, test.values2...)) {
-			t.Errorf("Wrong value got %d expected %d", v, append(test.values1, test.values2...))
+		if v := list1.All(); slices.Equal(v, append(test.values1, test.values2...)) {
+			t.Errorf("Wrong value got %v expected %v", v, append(test.values1, test.values2...))
 		}
 	}
 }
