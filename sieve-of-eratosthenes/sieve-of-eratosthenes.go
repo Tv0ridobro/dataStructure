@@ -30,7 +30,7 @@ func New(size int) *SieveOfEratosthenes {
 
 // IsPrime returns true if given number is prime,
 // false otherwise.
-func (s *SieveOfEratosthenes) IsPrime(i int) bool {
+func (s SieveOfEratosthenes) IsPrime(i int) bool {
 	if i <= 0 {
 		return false
 	}
