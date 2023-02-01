@@ -1,3 +1,5 @@
+// Package bloom_filter implements a bloom filter.
+// See https://en.wikipedia.org/wiki/Bloom_filter for more details.
 package bloom_filter
 
 import (
@@ -6,14 +8,19 @@ import (
 	"github.com/dolthub/maphash"
 )
 
+// BloomFilter represents a bloom filter.
+// Zero value of BloomFilter is bloom filter, should be used only with New().
 type BloomFilter[T comparable] struct {
 	hashers []maphash.Hasher[T]
 	bits    []byte
 	size    int
 }
 
-func New[T comparable](n int, probability float64) BloomFilter[T] {
-	mFloat := -math.Log(probability) * float64(n) / (math.Ln2 * math.Ln2)
+// New returns an initialized bloom filter.
+// n is expected number of elements,
+// probabilityOfMistake is probability of false positive BloomFilter.Contains().
+func New[T comparable](n int, probabilityOfMistake float64) BloomFilter[T] {
+	mFloat := -math.Log(probabilityOfMistake) * float64(n) / (math.Ln2 * math.Ln2)
 	k := int(mFloat / float64(n) * math.Ln2)
 	m := int(mFloat)
 
@@ -28,6 +35,8 @@ func New[T comparable](n int, probability float64) BloomFilter[T] {
 	}
 }
 
+// Contains returns true if skiplist contains given value, false otherwise.
+// Contains can give false positive results.
 func (b BloomFilter[T]) Contains(elem T) bool {
 	for _, hasher := range b.hashers {
 		h := hasher.Hash(elem)
@@ -40,6 +49,7 @@ func (b BloomFilter[T]) Contains(elem T) bool {
 	return true
 }
 
+// Insert inserts value in a bloom filter.
 func (b BloomFilter[T]) Insert(elem T) {
 	for _, hasher := range b.hashers {
 		h := hasher.Hash(elem)
