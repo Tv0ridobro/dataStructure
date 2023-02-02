@@ -1,14 +1,30 @@
+// Package thin_heap implements a thin heap.
+// See http://www.cs.tau.ac.il/~haimk/papers/newthin1.pdf for more details.
 package thin_heap
 
 import (
 	"golang.org/x/exp/constraints"
+
+	mathx "github.com/Tv0ridobro/data-structure/math"
 )
 
+// ThinHeap represents a thin heap.
+// Zero value of ThinHeap is empty ThinHeap.
 type ThinHeap[T constraints.Ordered] struct {
 	first *Node[T]
 	last  *Node[T]
+	size  int
 }
 
+// New returns empty ThinHeap.
+func New[T constraints.Ordered]() *ThinHeap[T] {
+	return &ThinHeap[T]{
+		first: nil,
+		last:  nil,
+	}
+}
+
+// Min returns minimal element.
 func (h *ThinHeap[T]) Min() T {
 	if h.first != nil {
 		return h.first.value
@@ -17,11 +33,19 @@ func (h *ThinHeap[T]) Min() T {
 	return zero
 }
 
+// DeleteMin delete minimal element from heap and return it.
 func (h *ThinHeap[T]) DeleteMin() T {
+	if h.first == nil {
+		var zero T
+		return zero
+	}
+	h.size--
+
 	tmp := h.first
 	h.first = h.first.right
 	if h.first == nil {
 		h.last = nil
+		return tmp.value
 	}
 
 	x := tmp.child
@@ -36,12 +60,11 @@ func (h *ThinHeap[T]) DeleteMin() T {
 		x = next
 	}
 
-	max := -1
 	x = h.first
-	rangs := make(map[int]*Node[T])
+	rangs := make([]*Node[T], mathx.NearestPowerOf2(h.size))
 	for x != nil {
 		next := x.right
-		for node, ok := rangs[x.rank]; ok; node, ok = rangs[x.rank] {
+		for node := rangs[x.rank]; node != nil; node = rangs[x.rank] {
 			if node.value < x.value {
 				node, x = x, node
 			}
@@ -52,23 +75,19 @@ func (h *ThinHeap[T]) DeleteMin() T {
 			node.left = x
 			x.child = node
 
-			delete(rangs, x.rank)
+			rangs[x.rank] = nil
 			x.rank++
 		}
 		rangs[x.rank] = x
-		if x.rank > max {
-			max = x.rank
-		}
 		x = next
 	}
 
 	n := New[T]()
-	for i := 0; i <= max; i++ {
-		value := rangs[i]
-		if value != nil {
-			value.left = nil
-			value.right = nil
-			n.insert(value)
+	for _, e := range rangs {
+		if e != nil {
+			e.left = nil
+			e.right = nil
+			n.insert(e)
 		}
 	}
 	h.first, h.last = n.first, n.last
@@ -76,9 +95,16 @@ func (h *ThinHeap[T]) DeleteMin() T {
 	return tmp.value
 }
 
+// Insert inserts elements into heap.
 func (h *ThinHeap[T]) Insert(element T) {
 	n := &Node[T]{value: element}
+	h.size++
 	h.insert(n)
+}
+
+// Size returns size of heap.
+func (h *ThinHeap[T]) Size() int {
+	return h.size
 }
 
 func (h *ThinHeap[T]) insert(n *Node[T]) {
@@ -96,11 +122,4 @@ func (h *ThinHeap[T]) insert(n *Node[T]) {
 	h.last.right = n
 	n.left = h.last
 	h.last = n
-}
-
-func New[T constraints.Ordered]() *ThinHeap[T] {
-	return &ThinHeap[T]{
-		first: nil,
-		last:  nil,
-	}
 }

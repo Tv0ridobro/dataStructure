@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestName(t *testing.T) {
+func TestRightOrder(t *testing.T) {
 	heap := New[int]()
 	for i := 0; i < 1000; i++ {
 		heap.Insert(i)
@@ -19,7 +19,7 @@ func TestName(t *testing.T) {
 	}
 }
 
-func TestName2(t *testing.T) {
+func TestRandomOrder(t *testing.T) {
 	const size = 10000
 
 	heap := New[int]()
@@ -44,7 +44,7 @@ func TestName2(t *testing.T) {
 	}
 }
 
-func TestName3(t *testing.T) {
+func TestRepeats(t *testing.T) {
 	heap := New[int]()
 
 	heap.Insert(2)
@@ -71,5 +71,41 @@ func TestName3(t *testing.T) {
 	}
 	if value := heap.DeleteMin(); value != math.MinInt {
 		t.Errorf("wrong answer %d %d", value, 2)
+	}
+}
+
+func TestEmpty(t *testing.T) {
+	heap := New[int]()
+
+	if value := heap.Min(); value != 0 {
+		t.Errorf("wrong answer %d %d", value, 0)
+	}
+
+	if value := heap.Size(); value != 0 {
+		t.Errorf("wrong answer %d %d", value, 0)
+	}
+
+	if value := heap.DeleteMin(); value != 0 {
+		t.Errorf("wrong answer %d %d", value, 0)
+	}
+
+	if value := heap.Size(); value != 0 {
+		t.Errorf("wrong answer %d %d", value, 0)
+	}
+
+	heap.Insert(1)
+	if value := heap.Size(); value != 1 {
+		t.Errorf("wrong answer %d %d", value, 1)
+	}
+	if value := heap.Min(); value != 1 {
+		t.Errorf("wrong answer %d %d", value, 1)
+	}
+
+	if value := heap.DeleteMin(); value != 1 {
+		t.Errorf("wrong answer %d %d", value, 1)
+	}
+
+	if value := heap.Size(); value != 0 {
+		t.Errorf("wrong answer %d %d", value, 0)
 	}
 }
