@@ -7,6 +7,7 @@ import (
 )
 
 func TestRightOrder(t *testing.T) {
+	t.Parallel()
 	heap := New[int]()
 	for i := 0; i < 1000; i++ {
 		heap.Insert(i)
@@ -20,6 +21,7 @@ func TestRightOrder(t *testing.T) {
 }
 
 func TestRandomOrder(t *testing.T) {
+	t.Parallel()
 	const size = 10000
 
 	heap := New[int]()
@@ -37,7 +39,6 @@ func TestRandomOrder(t *testing.T) {
 	}
 
 	for i := 0; i < size; i++ {
-		//fmt.Println(heap.Min())
 		if value := heap.DeleteMin(); value != i {
 			t.Errorf("wrong answer %d %d", value, i)
 		}
@@ -45,6 +46,7 @@ func TestRandomOrder(t *testing.T) {
 }
 
 func TestRepeats(t *testing.T) {
+	t.Parallel()
 	heap := New[int]()
 
 	heap.Insert(2)
@@ -75,6 +77,7 @@ func TestRepeats(t *testing.T) {
 }
 
 func TestEmpty(t *testing.T) {
+	t.Parallel()
 	heap := New[int]()
 
 	if value := heap.Min(); value != 0 {

@@ -5,6 +5,7 @@ import (
 )
 
 func TestBloomFilter_Add(t *testing.T) {
+	t.Parallel()
 	probability := 0.01
 	bloom := New[int](1000, probability)
 	for i := 0; i < 1000; i++ {

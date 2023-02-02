@@ -72,7 +72,6 @@ func (s *SegmentTree[T]) query(i, left, right, l, r int) T {
 // Modify modifies value at given index.
 func (s *SegmentTree[T]) Modify(i int, value T) {
 	s.modify(1, i, 0, len(s.elements)/2-1, value)
-	return
 }
 
 // modify modifies value at given index
@@ -90,5 +89,4 @@ func (s *SegmentTree[T]) modify(i, ind, left, right int, value T) {
 		s.modify(i*2+1, ind, middle+1, right, value)
 	}
 	s.elements[i] = s.op(s.elements[i*2], s.elements[i*2+1])
-	return
 }

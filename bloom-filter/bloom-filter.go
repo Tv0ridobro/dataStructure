@@ -55,6 +55,6 @@ func (b BloomFilter[T]) Insert(elem T) {
 		h := hasher.Hash(elem)
 		index := h % uint64(b.size)
 		bucketNumber := index / 8
-		b.bits[bucketNumber] = b.bits[bucketNumber] | (1 << (index % 8))
+		b.bits[bucketNumber] |= (1 << (index % 8))
 	}
 }

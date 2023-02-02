@@ -1,8 +1,15 @@
+issues:
+  exclude-rules:
+    - path: (.+)_test.go
+      linters:
+        - ifshort
+        - cyclop
+    - path: heap/heap.go
+      linters:
+        - cyclop
 linters:
   enable:
     - paralleltest
-    - gci
-    - revive
     - gofumpt
     - gocritic
     - forbidigo
@@ -20,10 +27,9 @@ linters:
     - dupl
     - errname
     - errorlint
-    - exhaustivestruct
+    - exhaustruct
     - exportloopref
     - forcetypeassert
-    - funlen
     - gochecknoglobals
     - nakedret
     - nestif
@@ -44,16 +50,15 @@ linters:
     - maintidx
     - makezero
     - misspell
-  disable:
-    - ifshort
-    # temporally disabled because of 1.18
     - unused
     - staticcheck
-    - structcheck
-    - stylecheck
-    - unparam
-    - wastedassign
-    - nilerr
-    - tparallel
     - gosimple
+  disable:
+    - gci
+    - revive
+    - stylecheck
+    - funlen
+    - ifshort
+    - structcheck
+
 

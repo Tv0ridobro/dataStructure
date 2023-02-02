@@ -100,6 +100,7 @@ func TestSplayTree_Empty(t *testing.T) {
 }
 
 func TestNewWithComparator(t *testing.T) {
+	t.Parallel()
 	s := NewWithComparator(func(a int8, b int8) int {
 		switch {
 		case a > b:

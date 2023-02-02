@@ -196,7 +196,6 @@ func (n *node[T]) recalculateSize() {
 		n.size += n.right.size
 	}
 	n.size++
-	return
 }
 
 // kth returns kth greatest element.

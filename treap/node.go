@@ -86,7 +86,6 @@ func (n *node[T]) recalculateSize() {
 		n.size += n.right.size
 	}
 	n.size++
-	return
 }
 
 // getAll returns all elements in node.
