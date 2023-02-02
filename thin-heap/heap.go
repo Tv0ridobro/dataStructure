@@ -45,7 +45,6 @@ func (h *ThinHeap[T]) DeleteMin() T {
 	h.first = h.first.right
 	if h.first == nil {
 		h.last = nil
-		return tmp.value
 	}
 
 	x := tmp.child
