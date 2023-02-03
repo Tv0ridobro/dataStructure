@@ -1,4 +1,4 @@
-package thin_heap
+package thinheap
 
 import "golang.org/x/exp/constraints"
 

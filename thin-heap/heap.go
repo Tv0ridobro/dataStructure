@@ -1,6 +1,6 @@
-// Package thin_heap implements a thin heap.
+// Package thinheap implements a thin heap.
 // See http://www.cs.tau.ac.il/~haimk/papers/newthin1.pdf for more details.
-package thin_heap
+package thinheap
 
 import (
 	"golang.org/x/exp/constraints"

@@ -1,4 +1,4 @@
-package thin_heap
+package thinheap
 
 import (
 	"math"

@@ -1,6 +1,6 @@
-// Package bloom_filter implements a bloom filter.
+// Package bloomfilter implements a bloom filter.
 // See https://en.wikipedia.org/wiki/Bloom_filter for more details.
-package bloom_filter
+package bloomfilter
 
 import (
 	"math"
