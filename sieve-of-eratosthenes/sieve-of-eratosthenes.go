@@ -37,8 +37,8 @@ func (s SieveOfEratosthenes) IsPrime(i int) bool {
 	return s.numbers[i] == i
 }
 
-// GetDelimiters returns all delimiters of given number.
-func (s SieveOfEratosthenes) GetDelimiters(i int) []int {
+// PrimeFactorization returns prime numbers, such that their product gives the original number.
+func (s SieveOfEratosthenes) PrimeFactorization(i int) []int {
 	delim := make([]int, 0)
 	for s.numbers[i] != i {
 		delim = append(delim, s.numbers[i])

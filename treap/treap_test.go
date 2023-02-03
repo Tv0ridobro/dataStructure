@@ -45,7 +45,7 @@ func TestAll2(t *testing.T) {
 		tr.Insert(i)
 	}
 	sort.Ints(permutation)
-	if !slices.Equal(tr.GetAll(), permutation) {
+	if !slices.Equal(tr.All(), permutation) {
 		t.Errorf("permutation doesn't equal getAll call")
 	}
 	if tr.Size() != 1000000 {

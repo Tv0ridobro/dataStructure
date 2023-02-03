@@ -10,10 +10,10 @@ func TestSieveOfEratosthenes_GetDelimiters(t *testing.T) {
 	t.Parallel()
 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}
 	s := New(101)
-	if v := s.GetDelimiters(100); !slices.Equal(v, []int{2, 2, 5, 5}) {
+	if v := s.PrimeFactorization(100); !slices.Equal(v, []int{2, 2, 5, 5}) {
 		t.Errorf("wrong answer %v %v", v, []int{2, 2, 5, 5})
 	}
-	if v := s.GetDelimiters(97); !slices.Equal(v, []int{97}) {
+	if v := s.PrimeFactorization(97); !slices.Equal(v, []int{97}) {
 		t.Errorf("wrong answer %v %v", v, []int{97})
 	}
 	if v := s.IsPrime(97); v != true {

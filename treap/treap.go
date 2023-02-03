@@ -90,9 +90,9 @@ func (t *Treap[T]) Size() int {
 	return t.root.size
 }
 
-// GetAll returns all elements from tree.
+// All returns all elements from tree.
 // Returned slice is sorted.
-func (t *Treap[T]) GetAll() []T {
+func (t *Treap[T]) All() []T {
 	if t.root == nil {
 		return nil
 	}

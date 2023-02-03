@@ -16,9 +16,9 @@ l := list.New[int]()
 l.PushBack(1)
 l.PushBack(2)
 l.PushFront(0)
-fmt.Println(l.GetAll()) // [0 1 2]
+fmt.Println(l.All()) // [0 1 2]
 l.Reverse()
-fmt.Println(l.GetAll()) // [2 1 0]
+fmt.Println(l.All()) // [2 1 0]
 ```
 ## Treap
 ```go
@@ -30,7 +30,7 @@ t.Insert(19)
 fmt.Println(t.Contains(5)) // true
 t.Remove(5)
 fmt.Println(t.Contains(5)) // false
-fmt.Println(t.GetAll()) // [8 10 19]
+fmt.Println(t.All()) // [8 10 19]
 ```
 ## Segment-tree
 ```go
