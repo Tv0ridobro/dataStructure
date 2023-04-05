@@ -118,3 +118,21 @@ func TestNewWithComparator(t *testing.T) {
 		t.Errorf("slices are not equal")
 	}
 }
+
+func TestRepeated(t *testing.T) {
+	t.Parallel()
+	s := New[int]()
+	s.Insert(1)
+	s.Insert(1)
+	if !s.Contains(1) {
+		t.Error("doesnt contain 1")
+	}
+	s.Remove(1)
+	if !s.Contains(1) {
+		t.Error("doesnt contain 1")
+	}
+	s.Remove(1)
+	if s.Contains(1) {
+		t.Error("does contain 1")
+	}
+}
