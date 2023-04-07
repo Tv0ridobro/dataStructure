@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/Tv0ridobro/data-structure/graph"
+	"github.com/Tv0ridobro/data-structure/slices"
 )
 
 func TestShortedPath(t *testing.T) {
@@ -18,5 +19,9 @@ func TestShortedPath(t *testing.T) {
 	g.AddEdgeDefault(4, 1)
 	g.AddEdgeDefault(4, 0)
 	g.AddEdgeDefault(4, 5)
-	FindShortestPath(g, 0, 5)
+
+	if !(slices.Equal(FindShortestPath(g, 0, 5), []int{0, 1, 3, 4, 5}) ||
+		slices.Equal(FindShortestPath(g, 0, 5), []int{0, 2, 3, 4, 5})) {
+		t.Errorf("wrong answer")
+	}
 }
