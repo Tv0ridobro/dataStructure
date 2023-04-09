@@ -21,4 +21,7 @@ func TestSparseTable_Query(t *testing.T) {
 	if v := table.Query(5, 6); v != 8 {
 		t.Errorf("wrong answer for query %d %d", v, 8)
 	}
+	if v := table.Query(2, 2); v != 5 {
+		t.Errorf("wrong answer for query %d %d", v, 5)
+	}
 }

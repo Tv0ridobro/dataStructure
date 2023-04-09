@@ -36,7 +36,7 @@ func Log2(i int) int {
 }
 
 // Min returns min of 2 elements.
-func Min(a, b int) int {
+func Min[T constraints.Ordered](a, b T) T {
 	if a > b {
 		return b
 	}
@@ -44,7 +44,7 @@ func Min(a, b int) int {
 }
 
 // Max returns max of 2 elements.
-func Max(a, b int) int {
+func Max[T constraints.Ordered](a, b T) T {
 	if a > b {
 		return a
 	}
