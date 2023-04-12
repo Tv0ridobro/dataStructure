@@ -27,3 +27,11 @@ func TestRMQpm1_Min(t *testing.T) {
 		t.Errorf("wrong answer %d", value)
 	}
 }
+
+func TestRMQpm1_Min2(t *testing.T) {
+	t.Parallel()
+	rmq := NewRMQpm1([]int{1})
+	if value := rmq.Min(0, 0); value != 1 {
+		t.Errorf("wrong answer %d", value)
+	}
+}

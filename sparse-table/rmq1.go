@@ -29,6 +29,9 @@ type block[T constraints.Integer] struct {
 func NewRMQpm1[T constraints.Signed](elements []T) RMQpm1[T] {
 	n := len(elements)
 	k := int(0.5 * math.Log2(float64(n)))
+	if k == 0 {
+		k = 1
+	}
 
 	// precalculate all possible blocks
 	precalculated := make([][][]T, 1<<(k-1))
@@ -111,7 +114,7 @@ func (rmq *RMQpm1[T]) Min(l, r int) T {
 		return zero
 	}
 
-	k := rmq.k
+	k := len(rmq.precalculated[0])
 
 	l1 := l / k
 	r1 := r / k
