@@ -22,3 +22,12 @@ func Reverse[T any](f []T) []T {
 	}
 	return s
 }
+
+func Generate[T any](size int, f func(i int) T) []T {
+	s := make([]T, size)
+	for i := 0; i < size; i++ {
+		s[i] = f(i)
+	}
+
+	return s
+}
