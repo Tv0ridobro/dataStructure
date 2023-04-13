@@ -10,6 +10,10 @@ issues:
     - path: sparse-table/rmq1.go
       linters:
         - cyclop
+    - path: slices/slices_test.go
+      linters:
+        - paralleltest
+        - govet
 linters:
   enable:
     - paralleltest

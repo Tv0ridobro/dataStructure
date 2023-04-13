@@ -6,6 +6,7 @@ import (
 )
 
 func TestEqual(t *testing.T) {
+	t.Parallel()
 	type args[T comparable] struct {
 		f []T
 		s []T
@@ -50,6 +51,7 @@ func TestEqual(t *testing.T) {
 }
 
 func TestGenerate(t *testing.T) {
+	t.Parallel()
 	type args[T any] struct {
 		size int
 		f    func(i int) T
@@ -89,6 +91,7 @@ func TestGenerate(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
+			t.Parallel()
 			if got := Generate(tt.args.size, tt.args.f); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Generate() = %v, want %v", got, tt.want)
 			}
@@ -97,6 +100,7 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
+	t.Parallel()
 	type testCase[T any] struct {
 		args []T
 		want []T
