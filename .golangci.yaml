@@ -7,6 +7,9 @@ issues:
     - path: heap/heap.go
       linters:
         - cyclop
+    - path: sparse-table/rmq1.go
+      linters:
+        - cyclop
 linters:
   enable:
     - paralleltest
