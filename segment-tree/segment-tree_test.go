@@ -33,7 +33,7 @@ func TestSum(t *testing.T) {
 
 func TestMax(t *testing.T) {
 	t.Parallel()
-	tree := New[int]([]int{17, 2, 3, 4, 5}, mathx.Max, math.MinInt64)
+	tree := New[int]([]int{17, 2, 3, 4, 5}, mathx.Max[int], math.MinInt64)
 	tests := []struct {
 		l, r   int
 		answer int
@@ -93,7 +93,7 @@ func TestMatrixMul(t *testing.T) {
 
 func TestSegmentTree_Modify(t *testing.T) {
 	t.Parallel()
-	tree := New[int]([]int{8, 0, 10, 500}, mathx.Max, math.MinInt)
+	tree := New[int]([]int{8, 0, 10, 500}, mathx.Max[int], math.MinInt)
 	if val := tree.Query(0, 3); val != 500 {
 		t.Errorf("val != neutral %d", val)
 	}
