@@ -35,7 +35,7 @@ func TestEqual(t *testing.T) {
 		{args: struct {
 			f []int
 			s []int
-		}{f: []int{}, s: []int{0, 0, 0}}, want: true},
+		}{f: []int{}, s: []int{0, 0, 0}}, want: false},
 		{args: struct {
 			f []int
 			s []int
