@@ -36,6 +36,13 @@ func (g *Graph[T]) AddEdgeDefault(from, to int) {
 	g.AddEdge(from, to, zero)
 }
 
+func (g *Graph[T]) AddEdgesDefault(from int, to ...int) {
+	var zero T
+	for _, e := range to {
+		g.AddEdge(from, e, zero)
+	}
+}
+
 func (g *Graph[T]) AddEdges(vertex int, edges []Edge[T]) {
 	g.Edges[vertex] = append(g.Edges[vertex], edges...)
 	if !g.isDirected {
