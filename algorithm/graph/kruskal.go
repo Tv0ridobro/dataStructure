@@ -9,11 +9,6 @@ import (
 	"github.com/Tv0ridobro/data-structure/graph"
 )
 
-type Edge[T constraints.Integer] struct {
-	From, To int
-	Value    T
-}
-
 // KruskalMST finds minimum spanning tree using Kruskal’s algorithm.
 func KruskalMST[T constraints.Integer](graph *graph.Graph[T]) []Edge[T] {
 	edges := make([]Edge[T], 0)
