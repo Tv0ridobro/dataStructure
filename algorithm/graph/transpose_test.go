@@ -89,3 +89,22 @@ func TestTranspose3(t *testing.T) {
 		t.Errorf("wrong answer \n%v\n%v", ng.Edges, arg)
 	}
 }
+
+func TestTranspose4(t *testing.T) {
+	t.Parallel()
+	g := graph.New[struct{}](12, false)
+
+	g.AddEdgesDefault(1, 2, 3, 7)
+	g.AddEdgesDefault(2, 4)
+	g.AddEdgesDefault(4, 3, 5)
+	g.AddEdgesDefault(5, 4, 6, 9, 5, 5)
+	g.AddEdgesDefault(7, 6, 8)
+	g.AddEdgesDefault(8, 9)
+	g.AddEdgesDefault(10, 8, 11, 11, 11, 11)
+	g.AddEdgeDefault(11, 11)
+
+	ng := Transpose(g)
+	if !reflect.DeepEqual(ng, g) {
+		t.Error("now the same graph")
+	}
+}
