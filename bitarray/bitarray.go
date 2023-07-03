@@ -21,11 +21,11 @@ func (b BitArray) Set(i int, value byte) {
 
 	old := b.Get(i)
 	// to destroy old value with itself
-	value = value ^ old
+	value ^= old
 
 	switch rightBorderBytes - leftBorderBytes {
 	case 0:
-		value = value << (8 - int(b.bitsPerElement) - (leftBorderBits % 8))
+		value <<= 8 - int(b.bitsPerElement) - (leftBorderBits % 8)
 		b.data[leftBorderBytes] ^= value
 	case 1:
 		b.data[leftBorderBytes] ^= value >> ((rightBorderBits + 1) % 8)
@@ -46,8 +46,8 @@ func (b BitArray) Get(i int) byte {
 	case 1:
 		value = b.data[leftBorderBytes]
 		// zeroing bytes
-		value = value << (8 - int(b.bitsPerElement) + ((rightBorderBits + 1) % 8))
-		value = value >> (8 - int(b.bitsPerElement))
+		value <<= 8 - int(b.bitsPerElement) + ((rightBorderBits + 1) % 8)
+		value >>= 8 - int(b.bitsPerElement)
 		value |= b.data[rightBorderBytes] >> (8 - ((rightBorderBits + 1) % 8))
 	}
 
