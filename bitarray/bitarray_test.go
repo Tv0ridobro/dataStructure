@@ -50,28 +50,47 @@ func TestBitArray_Set_Get_random(t *testing.T) {
 
 func TestBitArray_Set_Get_random_overwrite(t *testing.T) {
 	t.Parallel()
-	const size = 1000
-	const bits = 7
-	ba := New(bits, size)
-	arr := make([]byte, size)
+	const size = 10000
+	bits := []byte{1, 2, 3, 4, 5, 6, 7}
 
-	for j := 0; j < 5; j++ {
-		for i := 0; i < size; i++ {
-			v := byte(rand.Intn(1 << bits))
-			ba.Set(i, v)
-			v = byte(rand.Intn(1 << bits))
-			ba.Set(i, v)
-			v = byte(rand.Intn(1 << bits))
-			ba.Set(i, v)
-			v = byte(rand.Intn(1 << bits))
-			ba.Set(i, v)
+	for bit := range bits {
+		ba := New(bits[bit], size)
+		arr := make([]byte, size)
 
-			arr[i] = v
+		for j := 0; j < 5; j++ {
+			for i := 0; i < size; i++ {
+				v := byte(rand.Intn(1 << bits[bit]))
+				ba.Set(i, v)
+				v = byte(rand.Intn(1 << bits[bit]))
+				ba.Set(i, v)
+				v = byte(rand.Intn(1 << bits[bit]))
+				ba.Set(i, v)
+				v = byte(rand.Intn(1 << bits[bit]))
+				ba.Set(i, v)
+
+				arr[i] = v
+			}
+
+			for i := 0; i < size; i++ {
+				if v := ba.Get(i); v != arr[i] {
+					t.Errorf("wa at %d got %d want %d", i, v, arr[i])
+				}
+			}
 		}
+	}
+}
+
+func TestBitArray_Get_zero(t *testing.T) {
+	t.Parallel()
+	const size = 1000
+	bits := []byte{1, 2, 3, 4, 5, 6, 7}
+
+	for bit := range bits {
+		ba := New(bits[bit], size)
 
 		for i := 0; i < size; i++ {
-			if v := ba.Get(i); v != arr[i] {
-				t.Errorf("wa at %d got %d want %d", i, v, arr[i])
+			if v := ba.Get(i); v != 0 {
+				t.Errorf("wa at %d got %d want %d", i, v, 0)
 			}
 		}
 	}
