@@ -6,6 +6,7 @@ import (
 	"github.com/Tv0ridobro/data-structure/math"
 )
 
+// FindArticulationPoints finds all articulation points in given graph.
 func FindArticulationPoints[T any](g *graph.Graph[T]) []int {
 	enter := make([]int, g.Size())
 	ret := make([]int, g.Size())

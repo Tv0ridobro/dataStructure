@@ -13,6 +13,7 @@ func New(bitsPerElement byte, size int) BitArray {
 	}
 }
 
+// Set sets the value at a specific index in the BitArray.
 func (b BitArray) Set(i int, value byte) {
 	leftBorderBits := i * int(b.bitsPerElement)
 	leftBorderBytes := leftBorderBits / 8
@@ -33,6 +34,8 @@ func (b BitArray) Set(i int, value byte) {
 	}
 }
 
+// Get gets the value at a specific index in the BitArray.
+// If it's not set, zero will be returned.
 func (b BitArray) Get(i int) byte {
 	leftBorderBits := i * int(b.bitsPerElement)
 	leftBorderBytes := leftBorderBits / 8

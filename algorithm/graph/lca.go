@@ -14,11 +14,7 @@ type LCA struct {
 	st  *sparsetable.SparseTable[int]
 }
 
-func (a LCA) LCA(u, v int) int {
-	first, second := a.pos[u], a.pos[v]
-	return a.o[a.st.Query(mathx.Min(first, second), mathx.Max(first, second))]
-}
-
+// NewLCA returns new LCA struct for computing LCA of given vertexes.
 func NewLCA[T any](g *graph.Graph[T]) LCA {
 	m := make([]int, g.Size())
 	o := make([]int, g.Size())
@@ -33,6 +29,12 @@ func NewLCA[T any](g *graph.Graph[T]) LCA {
 		pos: pos,
 		st:  st,
 	}
+}
+
+// LCA returns LCA of given vertexes.
+func (a LCA) LCA(u, v int) int {
+	first, second := a.pos[u], a.pos[v]
+	return a.o[a.st.Query(mathx.Min(first, second), mathx.Max(first, second))]
 }
 
 func dfsLCA[T any](vertex int, g *graph.Graph[T], m, o, pos []int, counter *int, order *stack.Stack[int]) {
