@@ -2,7 +2,6 @@ issues:
   exclude-rules:
     - path: (.+)_test.go
       linters:
-        - ifshort
         - cyclop
     - path: heap/heap.go
       linters:
@@ -32,26 +31,19 @@ linters:
     - decorder
     - dogsled
     - dupl
-    - errname
-    - errorlint
     - exhaustruct
     - exportloopref
     - forcetypeassert
     - gochecknoglobals
     - nakedret
     - nestif
-    - nilnil
     - nolintlint
     - prealloc
     - predeclared
     - unconvert
-    - wrapcheck
     - gocognit
-    - goconst
     - gocyclo
     - godox
-    - goerr113
-    - goprintffuncname
     - grouper
     - importas
     - maintidx
@@ -60,12 +52,19 @@ linters:
     - unused
     - staticcheck
     - gosimple
-  disable:
-    - gci
-    - revive
-    - stylecheck
-    - funlen
-    - ifshort
-    - structcheck
-
-
+    - govet
+    - usestdlibvars
+linters-settings:
+  godot:
+    scope: declarations
+    period: true
+  gocritic:
+    disabled-checks:
+      - unnamedResult
+      - hugeParam
+    enabled-tags:
+      - diagnostic
+      - style
+      - performance
+      - experimental
+      - opinionated
