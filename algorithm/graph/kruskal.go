@@ -10,10 +10,10 @@ import (
 )
 
 // KruskalMST finds minimum spanning tree using Kruskal’s algorithm.
-func KruskalMST[T constraints.Integer](graph *graph.Graph[T]) []Edge[T] {
+func KruskalMST[T constraints.Integer](g *graph.Graph[T]) []Edge[T] {
 	edges := make([]Edge[T], 0)
 
-	for i, e := range graph.Edges {
+	for i, e := range g.Edges {
 		for _, ed := range e {
 			edges = append(edges, Edge[T]{
 				From:  i,
@@ -27,8 +27,8 @@ func KruskalMST[T constraints.Integer](graph *graph.Graph[T]) []Edge[T] {
 		return edges[i].Value < edges[j].Value
 	})
 
-	ds := disjointset.New(graph.Size())
-	answer := make([]Edge[T], 0, graph.Size()-1)
+	ds := disjointset.New(g.Size())
+	answer := make([]Edge[T], 0, g.Size()-1)
 	for _, e := range edges {
 		if ds.Get(e.From) != ds.Get(e.To) {
 			answer = append(answer, e)

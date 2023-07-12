@@ -55,7 +55,7 @@ func FuzzZFunction(f *testing.F) {
 			if !strings.HasPrefix(s, s[i:i+e]) {
 				t.Errorf("wrong answer %s %v", s, zfunction)
 			}
-			if len(s) >= i+e+1 && strings.HasPrefix(s, s[i:i+e+1]) {
+			if len(s) > i+e && strings.HasPrefix(s, s[i:i+e+1]) {
 				t.Errorf("wrong answer %s %v", s, zfunction)
 			}
 		}

@@ -43,7 +43,7 @@ func NewRMQpm1[T constraints.Signed](elements []T) RMQpm1[T] {
 	}
 
 	for i := 0; i < len(precalculated); i++ {
-		var prev T = 0
+		var prev T
 		for j := 0; j < k-1; j++ {
 			if (i & (1 << j)) != 0 {
 				precalculated[i][j+1][j+1] = prev + 1

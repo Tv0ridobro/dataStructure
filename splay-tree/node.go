@@ -169,7 +169,7 @@ func split[T any](n *node[T], key T, comp func(T, T) int) (*node[T], *node[T]) {
 }
 
 // merge merges two nodes, all elements of left node should be less than any of right node.
-func merge[T any](left *node[T], right *node[T]) *node[T] {
+func merge[T any](left, right *node[T]) *node[T] {
 	if left == nil {
 		return right
 	}

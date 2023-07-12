@@ -86,7 +86,7 @@ func SmallestValue[T constraints.Ordered]() T {
 	return a
 }
 
-// Comparator returns comparator of given type.
+// Comparator returns comparator of given type, where
 // comparator is a function that takes two arguments and
 // returns 0 if there are equal, -1 if first is less, 1 if first is greater.
 func Comparator[T constraints.Ordered]() func(T, T) int {

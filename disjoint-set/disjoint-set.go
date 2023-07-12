@@ -51,7 +51,7 @@ func (d *DisjointSet) Size(x int) int {
 }
 
 // Union unions two sets containing given elements.
-func (d *DisjointSet) Union(x int, y int) {
+func (d *DisjointSet) Union(x, y int) {
 	x = d.Get(x)
 	y = d.Get(y)
 	if x == y {
