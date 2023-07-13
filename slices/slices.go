@@ -23,6 +23,9 @@ func Reverse[T any](f []T) []T {
 	return s
 }
 
+// Generate is a function to generate a slice of a size specified by the user.
+// The values of the slice elements are determined by a function 'f' supplied by the user.
+// 'f' is a function that takes an integer index and returns a value of any type T.
 func Generate[T any](size int, f func(i int) T) []T {
 	s := make([]T, size)
 	for i := 0; i < size; i++ {
