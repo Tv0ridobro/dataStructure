@@ -5,17 +5,19 @@ package disjointset
 // DisjointSet represents a disjoint set.
 // Zero value of DisjointSet is disjoint set of 0 elements.
 type DisjointSet struct {
-	ranks   []int
-	parents []int
-	sizes   []int
+	ranks      []int
+	parents    []int
+	sizes      []int
+	components int
 }
 
 // New returns an initialized disjoint set of given size.
 func New(size int) *DisjointSet {
 	d := &DisjointSet{
-		ranks:   make([]int, size),
-		parents: make([]int, size),
-		sizes:   make([]int, size),
+		ranks:      make([]int, size),
+		parents:    make([]int, size),
+		sizes:      make([]int, size),
+		components: size,
 	}
 	for i := 0; i < size; i++ {
 		d.parents[i] = i
@@ -29,6 +31,7 @@ func (d *DisjointSet) Add() {
 	d.ranks = append(d.ranks, 0)
 	d.sizes = append(d.sizes, 1)
 	d.parents = append(d.parents, len(d.parents))
+	d.components++
 }
 
 // Get returns root element of set containing given element.
@@ -54,7 +57,7 @@ func (d *DisjointSet) Size(x int) int {
 func (d *DisjointSet) Union(x, y int) {
 	x = d.Get(x)
 	y = d.Get(y)
-	if x == y {
+	if x == y || x == -1 || y == -1 {
 		return
 	}
 	if d.ranks[x] == d.ranks[y] {
@@ -67,4 +70,10 @@ func (d *DisjointSet) Union(x, y int) {
 		d.parents[x] = y
 		d.sizes[y] += d.sizes[x]
 	}
+	d.components--
+}
+
+// Components returns number of components.
+func (d *DisjointSet) Components() int {
+	return d.components
 }
