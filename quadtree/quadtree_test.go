@@ -1,8 +1,9 @@
 package quadtree
 
 import (
-	"github.com/Tv0ridobro/data-structure/slices"
 	"testing"
+
+	"github.com/Tv0ridobro/data-structure/slices"
 )
 
 func TestQuadTree(t *testing.T) {
