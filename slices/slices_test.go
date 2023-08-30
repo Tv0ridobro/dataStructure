@@ -119,3 +119,86 @@ func TestReverse(t *testing.T) {
 		})
 	}
 }
+
+func TestCount(t *testing.T) {
+	t.Parallel()
+	type args[T comparable] struct {
+		s []T
+		e T
+	}
+	type testCase[T comparable] struct {
+		name string
+		args args[T]
+		want int
+	}
+	tests := []testCase[int]{
+		{name: "same elements", args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3}, e: 1}, want: 1},
+		{name: "different elements", args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 6, 7}, e: 6}, want: 1},
+		{name: "different elements", args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 6, 7, 6, 8, 9, 0, 6}, e: 6}, want: 3},
+		{name: "no elements", args: struct {
+			s []int
+			e int
+		}{s: []int{}, e: 10}, want: 0},
+		{name: "different elements", args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 9}, e: 0}, want: 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Count(tt.args.s, tt.args.e); got != tt.want {
+				t.Errorf("Count() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestContains(t *testing.T) {
+	t.Parallel()
+	type args[T comparable] struct {
+		s []T
+		e T
+	}
+	type testCase[T comparable] struct {
+		args args[T]
+		want bool
+	}
+	tests := []testCase[int]{
+		{args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3}, e: 1}, want: true},
+		{args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 6, 7}, e: 6}, want: true},
+		{args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 6, 7, 6, 8, 9, 0, 6}, e: 6}, want: true},
+		{args: struct {
+			s []int
+			e int
+		}{s: []int{}, e: 10}, want: false},
+		{args: struct {
+			s []int
+			e int
+		}{s: []int{1, 2, 3, 4, 5, 9}, e: 0}, want: false},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := Contains(tt.args.s, tt.args.e); got != tt.want {
+				t.Errorf("Count() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

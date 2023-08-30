@@ -14,6 +14,27 @@ func Equal[T comparable](f, s []T) bool {
 	return true
 }
 
+// Count returns count of element e in slice s.
+func Count[T comparable](s []T, e T) int {
+	count := 0
+	for i := range s {
+		if s[i] == e {
+			count++
+		}
+	}
+	return count
+}
+
+// Contains returns true if slice s contains element e, false otherwise.
+func Contains[T comparable](s []T, e T) bool {
+	for i := range s {
+		if s[i] == e {
+			return true
+		}
+	}
+	return false
+}
+
 // Reverse returns reversed slice.
 func Reverse[T any](f []T) []T {
 	s := make([]T, len(f))
