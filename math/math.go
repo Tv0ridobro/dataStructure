@@ -7,6 +7,10 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+type Numeric interface {
+	constraints.Integer | constraints.Float
+}
+
 // NearestPowerOf2 returns nearest power of 2 (k <= (1 << ans) < 2k).
 // For non-positive numbers returns 0.
 func NearestPowerOf2(k int) int {
