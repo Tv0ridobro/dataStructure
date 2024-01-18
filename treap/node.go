@@ -78,14 +78,13 @@ func (n *node[T]) recalculateSize() {
 	if n == nil {
 		return
 	}
-	n.size = 0
+	n.size = 1
 	if n.left != nil {
 		n.size += n.left.size
 	}
 	if n.right != nil {
 		n.size += n.right.size
 	}
-	n.size++
 }
 
 // getAll returns all elements in node.
